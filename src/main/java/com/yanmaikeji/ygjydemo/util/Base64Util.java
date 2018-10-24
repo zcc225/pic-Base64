@@ -62,8 +62,9 @@ public class Base64Util {
 			byte[] by = new byte[1024];
 			// 创建链接
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
 			conn.setRequestMethod("GET");
-			conn.setConnectTimeout(5000);
+//			conn.setConnectTimeout(5000);
 			InputStream is = conn.getInputStream();
 			// 将内容读取内存中
 			int len = -1;

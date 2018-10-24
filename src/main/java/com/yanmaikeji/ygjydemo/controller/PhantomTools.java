@@ -48,15 +48,24 @@ public class PhantomTools {
         InputStream inputStream = process.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String tmp = "";
-        while ((tmp = reader.readLine()) != null) {
-            close(process,reader);
-        }
+        try {
+			
+        	while ((tmp = reader.readLine()) != null) {
+        		if(tmp.contains("parent.")||tmp.contains("ReferenceError")){
+        			Thread.sleep(3000);
+        		}
+        		close(process,reader);
+        	}
+		} catch (Exception e) {
+			System.out.println("000");
+		}
         System.out.println("success");
         return imgagePath;
     }
     
     public static void main(String[] args) throws IOException {
         String url = "http://www.gzcc.gov.cn/data/QueryService/FileInfoemationVerify.aspx?ziguiEN=DC&anhao=1111&xingming=1111&chanzhenghao=11111";//以百度网站首页为例
-        PhantomTools.printUrlScreen2jpg(url);
+//    	String url = "https://www.autohome.com.cn/4259/#pvareaid=101353";
+    	PhantomTools.printUrlScreen2jpg(url);
     }
 }
